@@ -3,10 +3,15 @@ class Cloud extends MovableObject {
     height = 500;
     width = 250;
 
+    constructor() {
+        super().loadImage('img/5.Fondo/Capas/4.nubes/1.png');
 
-constructor() {
-    super().loadImage('img/5.Fondo/Capas/4.nubes/1.png');
+        this.x = Math.random() * 500; // range of numbers between 200 and 700.
+        this.animateCloud()
+    }
 
-    this.x = Math.random() * 500; // range of numbers between 200 and 700.
-}
+
+    animateCloud() {
+        this.moveLeft();
+    }
 }
