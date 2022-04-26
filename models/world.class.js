@@ -16,11 +16,15 @@ class World {
     ];
     canvas;
     ctx;
+    keyboard;
 
-    constructor(canvas) {
+
+    constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
+        this.keyboard = keyboard;
         this.draw();
+        this.setWorld();
     }
 
 
@@ -50,4 +54,7 @@ class World {
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.height, mo.width);
     }
 
+    setWorld(){
+        this.character.world = this;
+    }
 }
