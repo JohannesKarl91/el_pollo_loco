@@ -1,15 +1,10 @@
-class MovableObject {
-    x = 120;
-    y = 120;
-    img;
-    width = 240;
-    height = 100;
-    imageCache = {};
-    currentImage = 0;
+class MovableObject extends DrawableObject{
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
+    energy = 100;
+    lastHit = 0;
 
     applyGravity() {
         setInterval(() => {
@@ -23,26 +18,6 @@ class MovableObject {
 
     isAboveGround() {
         return this.y < 180;
-    }
-
-
-    //loadImage('./img/test.png');
-    loadImage(path) {
-        this.img = new Image(); //this.img = document.getElementById('image') <img id="image" src>
-        this.img.src = path;
-    }
-
-
-    /**
-     * 
-     * @param {Array} inputArray 
-     */
-    loadImages(inputArray) {
-        inputArray.forEach(path => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        });
     }
 
 
@@ -66,7 +41,53 @@ class MovableObject {
         this.x -= this.speed;
     }
 
-    jump(){
+    jump() {
         this.speedY = 30;
     }
+
+    isColliding(mo) {
+        return this.x + this.height > mo.x &&
+            this.y + this.width > mo.y &&
+            this.x < mo.x &&
+            this.y < mo.y + mo.width;
+    }
+
+    flipImage(ctx) {
+        ctx.save();
+        ctx.translate(this.height, 0);
+        ctx.scale(-1, 1);
+        this.x = this.x * -1;
+    }
+
+
+    flipImageBack(ctx) {
+        this.x = this.x * -1;
+        ctx.restore();
+    }
+
+    hit() {
+        this.energy -= 5;
+        if (this.energy < 0) {
+            this.energy = 0;
+        }
+
+        else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    isDead() {
+        return this.energy == 0;
+    }
+
+    isHurt() {
+        let timePassed = new Date().getTime() - this.lastHit; // Difference in ms.
+        timePassed = timePassed / 1000; // Difference in s.
+        return timePassed < 0.5;
+    }
 }
+
+
+
+
+
