@@ -5,7 +5,8 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-    statusBar = new StatusBar();
+    statusBarLife = new StatusBarLife();
+    statusBarBottle = new StatusBarBottle();
     throwableObjects = [];
 
 
@@ -27,10 +28,11 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
         //---------- Space for fixed objects ----------
-        this.addToMap(this.statusBar);
+        this.addToMap(this.statusBarLife);
+        this.addToMap(this.statusBarBottle);
         this.ctx.translate(this.camera_x, 0);
 
-        
+
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.clouds);
@@ -78,20 +80,42 @@ class World {
         }, 150);
     }
 
-    checkCollisions(){
+
+    checkThrowObjects() {
+        if (this.keyboard.THROW && this.character.addedBottles > 0) {
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+            this.throwableObjects.push(bottle);
+            this.character.addedBottles -= 10;
+            this.statusBarBottle.setPercentage(this.character.addedBottles);
+            console.log('Rest of bottles:', this.character.addedBottles);
+        }
+    }
+
+
+    checkCollisions() {
+        this.collisionEnemies();
+        this.collisionBottles();
+    }
+
+
+    collisionEnemies() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
-
+                this.statusBarLife.setPercentage(this.character.energy);
             };
         });
     }
 
-    checkThrowObjects(){
-        if(this.keyboard.THROW){
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
-            this.throwableObjects.push(bottle);
-        }
+
+    collisionBottles() {
+        this.level.bottles.forEach((bottle, index) => {
+            if (this.character.isColliding(bottle)) {
+                this.character.addedBottles += 10;
+                this.statusBarBottle.setPercentage(this.character.addedBottles);
+                this.level.bottles.splice(index, 1);
+                //sounds.getBottle_sound.play();
+            }
+        });
     }
 }

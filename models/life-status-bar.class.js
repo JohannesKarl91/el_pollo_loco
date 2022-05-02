@@ -1,4 +1,4 @@
-class StatusBar extends DrawableObject {
+class StatusBarLife extends DrawableObject {
 
     IMAGES_LIFE = [
         'img/7.Marcadores/Barra/Marcador vida/verde/0_.png',
@@ -17,7 +17,7 @@ class StatusBar extends DrawableObject {
         super();
         this.loadImages(this.IMAGES_LIFE);
         this.x = 25;
-        this.y = -10;
+        this.y = 0;
         this.setPercentage(100);
     }
 
