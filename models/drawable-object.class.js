@@ -14,9 +14,17 @@ class DrawableObject {
         this.img.src = path;
     }
 
-
+    /**
+     * 
+     * @param {HTMLCanvasElement} ctx 
+     */
     draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.height, this.width);
+        try {
+            ctx.drawImage(this.img, this.x, this.y, this.height, this.width);
+        } catch (e) {
+            console.warn('Error loading image', e);
+            console.log('Could not load image', this.img.src);
+        }
     }
 
 
