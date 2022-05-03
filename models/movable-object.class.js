@@ -6,6 +6,7 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
     addedBottles = 0;
+    addedCoins = 0;
 
     applyGravity() {
         setInterval(() => {
@@ -72,7 +73,10 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
+        if (!this.isAboveGround()) {       
         this.energy -= 5;
+    }
+
         if (this.energy < 0) {
             this.energy = 0;
         }

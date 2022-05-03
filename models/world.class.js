@@ -7,6 +7,7 @@ class World {
     camera_x = 0;
     statusBarLife = new StatusBarLife();
     statusBarBottle = new StatusBarBottle();
+    statusBarCoin = new StatusBarCoin();
     throwableObjects = [];
 
 
@@ -30,15 +31,16 @@ class World {
         //---------- Space for fixed objects ----------
         this.addToMap(this.statusBarLife);
         this.addToMap(this.statusBarBottle);
+        this.addToMap(this.statusBarCoin);
         this.ctx.translate(this.camera_x, 0);
 
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.bottles);
+        this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
-
         this.ctx.translate(-this.camera_x, 0);
 
         //draw wird immer aufgerufen. 
@@ -77,7 +79,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
-        }, 150);
+        }, 60);
     }
 
 
@@ -87,14 +89,17 @@ class World {
             this.throwableObjects.push(bottle);
             this.character.addedBottles -= 10;
             this.statusBarBottle.setPercentage(this.character.addedBottles);
-            console.log('Rest of bottles:', this.character.addedBottles);
+            console.log('Amount after throw', this.character.addedBottles);
         }
     }
 
 
     checkCollisions() {
-        this.collisionEnemies();
+        this.collisionCoins();
         this.collisionBottles();
+        this.collisionEnemies();
+        this.characterEnemies();
+
     }
 
 
@@ -112,9 +117,35 @@ class World {
         this.level.bottles.forEach((bottle, index) => {
             if (this.character.isColliding(bottle)) {
                 this.character.addedBottles += 10;
+                console.log(this.character.addedBottles);
                 this.statusBarBottle.setPercentage(this.character.addedBottles);
                 this.level.bottles.splice(index, 1);
                 //sounds.getBottle_sound.play();
+            }
+        });
+    }
+
+
+    collisionCoins() {
+        this.level.coins.forEach((coin, index) => {
+            if (this.character.isColliding(coin)) {
+                this.character.addedCoins += 5;
+                console.log(this.character.addedCoins);
+                this.statusBarCoin.setPercentage(this.character.addedCoins);
+                this.level.coins.splice(index, 1);
+                //sounds.getBottle_sound.play();
+            }
+        });
+    }
+
+
+    characterEnemies() {
+        this.level.enemies.forEach((enemy, index) => {
+            if (this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.chickenDead) { // Kill chicken from above
+                //     this.character.chickenCounter += 1;
+                enemy.chickenDead = true;
+                this.level.enemies.splice(index, 1);
+                console.log(enemy.chickenDead);
             }
         });
     }

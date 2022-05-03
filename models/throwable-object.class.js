@@ -38,12 +38,10 @@ class ThrowableObject extends MovableObject {
 
     animate() {
         setInterval(() => {
-            if (this.y > 250) {
+            if (this.y > 280) {
                 this.playAnimation(this.IMAGES_SPLASH);
             }
             else {
-
-
                 //Bottle throw animation
                 this.playAnimation(this.IMAGES_THROW);
             }
