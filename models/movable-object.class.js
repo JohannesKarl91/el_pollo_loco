@@ -72,9 +72,10 @@ class MovableObject extends DrawableObject {
         ctx.restore();
     }
 
+    
     hit() {
         if (!this.isAboveGround()) {       
-        this.energy -= 5;
+        this.energy -= 2.5;
     }
 
         if (this.energy < 0) {
@@ -86,9 +87,11 @@ class MovableObject extends DrawableObject {
         }
     }
 
+
     isDead() {
         return this.energy == 0;
     }
+
 
     isHurt() {
         let timePassed = new Date().getTime() - this.lastHit; // Difference in ms.

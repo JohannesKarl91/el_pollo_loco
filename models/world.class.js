@@ -40,6 +40,7 @@ class World {
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.throwableObjects);
         this.ctx.translate(-this.camera_x, 0);
 
@@ -90,22 +91,43 @@ class World {
             this.character.addedBottles -= 10;
             this.statusBarBottle.setPercentage(this.character.addedBottles);
             console.log('Amount after throw', this.character.addedBottles);
+            console.log('bottle', bottle);
+            this.collisionEndbossToThrowableObject(bottle);
         }
     }
 
 
+    collisionEndbossToThrowableObject(bottle) {
+            if (this.level.endboss[0].isColliding(bottle)) {
+                this.level.endboss[0].hit();
+                console.log(this.level.endboss[0].energy)
+            };
+    }
+
+
+    //---------- Check collision section of charater with enemies, endboss, bottles and coins ----------
     checkCollisions() {
         this.collisionCoins();
         this.collisionBottles();
+        this.collisionEndboss();
         this.collisionEnemies();
-        this.characterEnemies();
-
+        this.collisionCharacterAboveEnemies();
     }
 
 
     collisionEnemies() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && !this.character.isAboveGround() && !enemy.chickenDead) {
+                this.character.hit();
+                this.statusBarLife.setPercentage(this.character.energy);
+            };
+        });
+    }
+
+
+    collisionEndboss() {
+        this.level.endboss.forEach((endboss) => {
+            if (this.character.isColliding(endboss) && !this.character.isAboveGround()) {
                 this.character.hit();
                 this.statusBarLife.setPercentage(this.character.energy);
             };
@@ -139,13 +161,13 @@ class World {
     }
 
 
-    characterEnemies() {
+    collisionCharacterAboveEnemies() {
         this.level.enemies.forEach((enemy, index) => {
             if (this.character.isColliding(enemy) && this.character.isAboveGround() && !enemy.chickenDead) { // Kill chicken from above
+                // let currentTime = new Date().getTime();
+                // console.log('currentTime', currentTime);
                 //     this.character.chickenCounter += 1;
                 enemy.chickenDead = true;
-                this.level.enemies.splice(index, 1);
-                console.log(enemy.chickenDead);
             }
         });
     }
