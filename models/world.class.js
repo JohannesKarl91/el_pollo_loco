@@ -90,18 +90,8 @@ class World {
             this.throwableObjects.push(bottle);
             this.character.addedBottles -= 10;
             this.statusBarBottle.setPercentage(this.character.addedBottles);
-            console.log('Amount after throw', this.character.addedBottles);
-            console.log('bottle', bottle);
-            this.collisionEndbossToThrowableObject(bottle);
+            console.log('this.throwableObjects.length', this.throwableObjects.length)
         }
-    }
-
-
-    collisionEndbossToThrowableObject(bottle) {
-            if (this.level.endboss[0].isColliding(bottle)) {
-                this.level.endboss[0].hit();
-                console.log(this.level.endboss[0].energy)
-            };
     }
 
 
@@ -112,6 +102,18 @@ class World {
         this.collisionEndboss();
         this.collisionEnemies();
         this.collisionCharacterAboveEnemies();
+        this.collisionThrowableObject();    
+    }
+
+
+    collisionThrowableObject() {
+        this.throwableObjects.forEach((throwableObject) => {
+            if (this.level.endboss[0].isColliding(throwableObject)) {
+                this.level.endboss[0].hitEndboss();
+                console.log(this.level.endboss[0].hitEndboss());
+                console.log(this.level.endboss[0].energy);
+            }
+        })
     }
 
 

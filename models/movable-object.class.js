@@ -72,11 +72,11 @@ class MovableObject extends DrawableObject {
         ctx.restore();
     }
 
-    
+
     hit() {
-        if (!this.isAboveGround()) {       
-        this.energy -= 2.5;
-    }
+        if (!this.isAboveGround()) {
+            this.energy -= 2.5;
+        }
 
         if (this.energy < 0) {
             this.energy = 0;
@@ -84,6 +84,16 @@ class MovableObject extends DrawableObject {
 
         else {
             this.lastHit = new Date().getTime();
+        }
+    }
+
+
+    hitEndboss() {
+        if (this.energy < 0) {
+            this.energy = 0;
+        }
+        else {
+            this.energy -= 1;
         }
     }
 
