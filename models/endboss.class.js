@@ -1,7 +1,10 @@
 class Endboss extends MovableObject {
     width = 400;
     height = 300;
-    y = this.y - 75;
+    y = this.y - 65;
+    counterEndboss = 0;
+    endbossHurt = false;
+    endbossDead = false;
     IMAGES_STANDING = [
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G5.png',
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G6.png',
@@ -13,41 +16,122 @@ class Endboss extends MovableObject {
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G12.png'
     ];
 
-    // IMAGES_WALKING = [
-    //     'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G1.png',
-    //     'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G2.png',
-    //     'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G3.png',
-    //     'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G4.png'
-    // ];
+    IMAGES_WALKING = [
+        'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G1.png',
+        'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G2.png',
+        'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G3.png',
+        'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/1.Caminata/G4.png'
+    ];
 
+    IMAGES_HURTING = [
+        'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/3.Herida/G21.png',
+        'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/3.Herida/G22.png',
+        'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/3.Herida/G23.png'
+    ];
+    
+    IMAGES_DYING=[
+        'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G24.png',
+        'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G25.png',
+        'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G26.png'
+    ];
 
 
     constructor() {
         super().loadImage(this.IMAGES_STANDING[0]);
         this.loadImages(this.IMAGES_STANDING);
-        //this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_HURTING);
+        this.loadImages(this.IMAGES_DYING);
         this.x = 3 * 719;
         this.animate();
-        //this.walk();
     }
+
 
     animate() {
-
         setInterval(() => {
-            this.playAnimation(this.IMAGES_STANDING);
+            if (this.endbossDead) {
+                this.playAnimation(this.IMAGES_DYING);
+                this.speed = 0;
+            }
+            
+            if (this.endbossHurt) {
+                this.playAnimation(this.IMAGES_HURTING);
+                this.speed = 0;
+            }
+            if (this.counterEndboss < 51 && !this.endbossHurt) {
+                this.returnLeftBorder();
+            }
+            if (this.x > 2200 && !this.endbossHurt) {
+                this.returnRightBorder();
+            }
+            if (this.counterEndboss > 50 && this.x > 51 && !this.endbossHurt) {
+                this.walkFromRightToLeft();
+            }
+            if (this.x < 50 && !this.endbossHurt) {
+                this.standingLeftBorder();
+            }
+            if (this.counterEndboss > 185 && !this.endbossHurt) {
+                this.walkFromLeftToRight();
+            }
+            console.log('this.endbossDead', this.endbossDead);
+        }, 200);
+    }
+
+
+    stand() {
+        this.playAnimation(this.IMAGES_STANDING);
+        this.speed = 0;
+    }
+
+
+    walkLeft() {
+        this.otherDirection = false;
+        setInterval(() => {
+            this.moveLeft();
         }, 200)
     }
+
+    walkRight() {
+        this.otherDirection = true;
+        setInterval(() => {
+            this.x -= this.speed;
+        }, 200)
+    }
+
+
+    standingLeftBorder() {
+        this.stand();
+        this.otherDirection = true;
+        this.playAnimation(this.IMAGES_STANDING);
+        this.counterEndboss++;
+    }
+
+
+    returnLeftBorder() {
+        this.stand();
+        this.counterEndboss++;
+    }
+
+
+    returnRightBorder() {
+        this.counterEndboss = 0;
+        this.otherDirection = false;
+        this.x = 3 * 719;
+    }
+
+
+    walkFromRightToLeft() {
+        this.speed = 0.35;
+        this.walkLeft();
+        this.playAnimation(this.IMAGES_WALKING);
+        this.counterEndboss++;
+    }
+
+
+    walkFromLeftToRight() {
+        this.speed = -0.3;
+        this.walkRight();
+        this.playAnimation(this.IMAGES_WALKING);
+        this.counterEndboss++;
+    }
 }
-
-//     walk() {
-//         setInterval(() => {
-//             this.otherDirection = false;
-//             this.moveLeft();
-//         }, 1000 / 60)
-
-//         setInterval(() => {
-//             //Walk animation
-//             this.playAnimation(this.IMAGES_WALKING);
-//         }, 200)
-//     }
-// 

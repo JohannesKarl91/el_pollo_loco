@@ -23,18 +23,15 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
-        this.ctx.translate(this.camera_x, 0);
 
-        this.addObjectsToMap(this.level.backgroundObjects);
+        this.drawBackground();
 
-        this.ctx.translate(-this.camera_x, 0);
         //---------- Space for fixed objects ----------
         this.addToMap(this.statusBarLife);
         this.addToMap(this.statusBarBottle);
         this.addToMap(this.statusBarCoin);
+
         this.ctx.translate(this.camera_x, 0);
-
-
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.coins);
@@ -50,6 +47,14 @@ class World {
             self.draw();
         });
     }
+
+
+    drawBackground() {
+        this.ctx.translate(this.camera_x, 0);
+        this.addObjectsToMap(this.level.backgroundObjects);
+        this.ctx.translate(-this.camera_x, 0);
+    }
+
 
     addObjectsToMap(objects) {
         objects.forEach(o => {
@@ -90,7 +95,7 @@ class World {
             this.throwableObjects.push(bottle);
             this.character.addedBottles -= 10;
             this.statusBarBottle.setPercentage(this.character.addedBottles);
-            console.log('this.throwableObjects.length', this.throwableObjects.length)
+            //console.log('this.throwableObjects.length', this.throwableObjects.length)
         }
     }
 
@@ -102,16 +107,21 @@ class World {
         this.collisionEndboss();
         this.collisionEnemies();
         this.collisionCharacterAboveEnemies();
-        this.collisionThrowableObject();    
+        this.collisionThrowableObject();
     }
 
 
     collisionThrowableObject() {
-        this.throwableObjects.forEach((throwableObject) => {
+        this.throwableObjects.forEach((throwableObject) => {  
             if (this.level.endboss[0].isColliding(throwableObject)) {
                 this.level.endboss[0].hitEndboss();
-                console.log(this.level.endboss[0].hitEndboss());
-                console.log(this.level.endboss[0].energy);
+                this.level.endboss[0].endbossHurt = true;
+                console.log('this.level.endboss[0].endbossHurt', this.level.endboss[0].endbossHurt);
+                //console.log(this.level.endboss[0].hitEndboss());
+                //console.log(this.level.endboss[0].energy);
+            }
+            else{
+                this.level.endboss[0].endbossHurt = false;
             }
         })
     }
@@ -170,7 +180,14 @@ class World {
                 // console.log('currentTime', currentTime);
                 //     this.character.chickenCounter += 1;
                 enemy.chickenDead = true;
+                setTimeout(() => {
+                    this.level.enemies.splice(index, 1);
+                }, 500)
             }
         });
     }
+
+
+// ---------- Check dead status of character and endboss ----------//
+
 }
