@@ -24,13 +24,15 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
 
+        //---------- Section for background ----------//
         this.drawBackground();
 
-        //---------- Space for fixed objects ----------
+        //---------- Section for fixed objects ----------//
         this.addToMap(this.statusBarLife);
         this.addToMap(this.statusBarBottle);
         this.addToMap(this.statusBarCoin);
 
+        //---------- Section for all movable objects ----------//
         this.ctx.translate(this.camera_x, 0);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.bottles);
@@ -41,7 +43,7 @@ class World {
         this.addObjectsToMap(this.throwableObjects);
         this.ctx.translate(-this.camera_x, 0);
 
-        //draw wird immer aufgerufen. 
+        //draw has already been carried out. 
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
@@ -116,9 +118,9 @@ class World {
             if (this.level.endboss[0].isColliding(throwableObject)) {
                 this.level.endboss[0].hitEndboss();
                 this.level.endboss[0].endbossHurt = true;
-                console.log('this.level.endboss[0].endbossHurt', this.level.endboss[0].endbossHurt);
+                //console.log('this.level.endboss[0].endbossHurt', this.level.endboss[0].endbossHurt);
                 //console.log(this.level.endboss[0].hitEndboss());
-                //console.log(this.level.endboss[0].energy);
+                console.log(this.level.endboss[0].energy);
             }
             else{
                 this.level.endboss[0].endbossHurt = false;
@@ -186,8 +188,4 @@ class World {
             }
         });
     }
-
-
-// ---------- Check dead status of character and endboss ----------//
-
 }

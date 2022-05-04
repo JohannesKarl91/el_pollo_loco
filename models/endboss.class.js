@@ -5,6 +5,8 @@ class Endboss extends MovableObject {
     counterEndboss = 0;
     endbossHurt = false;
     endbossDead = false;
+    energy = this.energy
+
     IMAGES_STANDING = [
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G5.png',
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/2.Ateción-ataque/1.Alerta/G6.png',
@@ -28,8 +30,8 @@ class Endboss extends MovableObject {
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/3.Herida/G22.png',
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/3.Herida/G23.png'
     ];
-    
-    IMAGES_DYING=[
+
+    IMAGES_DYING = [
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G24.png',
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G25.png',
         'img/4.Secuencias_Enemy_gigantón-Doña_Gallinota-/4.Muerte/G26.png'
@@ -49,32 +51,31 @@ class Endboss extends MovableObject {
 
     animate() {
         setInterval(() => {
-            if (this.endbossDead) {
-                this.playAnimation(this.IMAGES_DYING);
-                this.speed = 0;
+            console.log('this.isDead()', this.isDead());
+            console.log('this.endbossDead', this.endbossDead)
+            if (this.isDead() || this.endbossDead) {
+                this.endbossIsDead();
             }
-            
-            if (this.endbossHurt) {
-                this.playAnimation(this.IMAGES_HURTING);
-                this.speed = 0;
+
+            if (this.endbossHurt && !this.isDead()) {
+                this.endbossIsHurt();
             }
-            if (this.counterEndboss < 51 && !this.endbossHurt) {
+            if (this.counterEndboss < 51 && !this.endbossHurt && !this.endbossDead) {
                 this.returnLeftBorder();
             }
-            if (this.x > 2200 && !this.endbossHurt) {
+            if (this.x > 2200 && !this.endbossHurt && !this.endbossDead) {
                 this.returnRightBorder();
             }
-            if (this.counterEndboss > 50 && this.x > 51 && !this.endbossHurt) {
+            if (this.counterEndboss > 50 && this.x > 51 && !this.endbossHurt && !this.endbossDead) {
                 this.walkFromRightToLeft();
             }
-            if (this.x < 50 && !this.endbossHurt) {
+            if (this.x < 50 && !this.endbossHurt && !this.endbossDead) {
                 this.standingLeftBorder();
             }
-            if (this.counterEndboss > 185 && !this.endbossHurt) {
+            if (this.counterEndboss > 185 && !this.endbossHurt && !this.endbossDead) {
                 this.walkFromLeftToRight();
             }
-            console.log('this.endbossDead', this.endbossDead);
-        }, 200);
+        }, 250);
     }
 
 
@@ -133,5 +134,17 @@ class Endboss extends MovableObject {
         this.walkRight();
         this.playAnimation(this.IMAGES_WALKING);
         this.counterEndboss++;
+    }
+
+    endbossIsHurt(){
+        this.playAnimation(this.IMAGES_HURTING);
+        this.speed = 0;
+    }
+
+    endbossIsDead(){
+        this.playAnimation(this.IMAGES_DYING);
+        this.endbossDead = true;
+        this.speed = 0;
+        this.endbossDead = true;
     }
 }
