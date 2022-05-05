@@ -75,7 +75,7 @@ class Endboss extends MovableObject {
             if (this.counterEndboss > 185 && !this.endbossHurt && !this.endbossDead) {
                 this.walkFromLeftToRight();
             }
-        }, 250);
+        }, 200);
     }
 
 

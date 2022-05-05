@@ -1,30 +1,52 @@
-canvas {
-    background-color: black;
-    margin: 0;
-}
-
-.canvasContainer{
-    position: relative;
-}
-
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0;
+    background-image: url(img/desertbackground.png);
+    background-repeat: no-repeat;
+    object-fit: contain;
+
 }
 
-.imgButtons{
+canvas {
+    background-color: black;
+    margin: 0;
+}
+
+.canvasContainer {
+    position: relative;
+    margin-top: 10vh;
+}
+
+.imgButtons {
     object-fit: contain;
     position: absolute;
     height: 50px;
     width: 50px;
     color: black;
     cursor: pointer;
-    
-    bottom: 0px;
-    right: -4px;
+
+    top: 0px;
+    right: 0px;
     z-index: 1;
+}
+
+.panel{
+    display: flex;
+}
+
+.panelBtn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+.panelImg{
+    width: 50px;
 }
 
 
@@ -32,8 +54,13 @@ body {
 @media only screen and (max-width: 720px) {
     canvas {
         width: 100%;
-
     }
+
+    .canvasContainer {
+        position: relative;
+        margin-top: 0 !important;
+    }
+
 }
 
 
@@ -41,5 +68,10 @@ body {
 @media only screen and (max-height: 480px) {
     canvas {
         height: 100vh;
+    }
+
+    .canvasContainer {
+        position: relative;
+        margin-top: 0 !important;
     }
 }
