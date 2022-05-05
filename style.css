@@ -3,10 +3,10 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 0;
-    background-image: url(img/desertbackground.png);
-    background-repeat: no-repeat;
-    object-fit: contain;
+    background-image: url(./img/desertbackground.png);
 
+
+    font-family: 'Oleo Script', cursive;
 }
 
 canvas {
@@ -26,10 +26,25 @@ canvas {
     width: 50px;
     color: black;
     cursor: pointer;
+    z-index: 1;
+}
+
+.imgFullscreen{
+    object-fit: contain;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    color: black;
+    cursor: pointer;
 
     top: 0px;
     right: 0px;
     z-index: 1;
+}
+
+.controlPanel{
+    display: flex;
+    justify-content: space-between;
 }
 
 .panel{
@@ -41,12 +56,17 @@ canvas {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-right: 8px;
-    margin-left: 8px;
+    margin-right: 12px;
+    margin-left: 12px;
+    cursor: pointer;
 }
 
 .panelImg{
-    width: 50px;
+    width: 55px;
+    height: 55px;
+    padding: 2px;
+    background-color: rgb(42, 169, 206);
+    border-radius: 50%;
 }
 
 

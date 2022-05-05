@@ -5,9 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>EL POLLO LOCO</title>
-    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script:wght@400;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="img/sombrero_favicon.png">
     <link rel="stylesheet" href="style.css">
 
@@ -36,7 +39,7 @@
 
     <div class="canvasContainer">
         <canvas id="canvas" height="480" width="720"></canvas>
-        <img onclick="changeToFullscreen()" class="imgButtons" src="img/10.Buttons/fullscreen.svg">
+        <img onclick="changeToFullscreen()" class="imgFullscreen" src="img/10.Buttons/fullscreen.svg">
         <div class="controlPanel">
             <div class="panel">
                 <div class="panelBtn">
@@ -46,6 +49,16 @@
                 <div class="panelBtn">
                     <img class="panelImg" src="img/10.Buttons/arrow_forward.svg">
                     <span>Forward</span>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panelBtn">
+                    <img class="panelImg" src="img/10.Buttons/arrow_throw.svg">
+                    <span>Throw</span>
+                </div>
+                <div class="panelBtn">
+                    <img class="panelImg" src="img/10.Buttons/arrow_upward.svg">
+                    <span>Jump</span>
                 </div>
             </div>
         </div>
