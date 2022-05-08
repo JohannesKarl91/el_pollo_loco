@@ -18,8 +18,16 @@ body {
 canvas {
     background-color: black;
     margin: 0;
+    margin-top: 16px;
     z-index: 1;
-    margin-top: 16px !important;
+}
+
+.canvasContainer{
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .imgButtons {
@@ -43,52 +51,12 @@ canvas {
     z-index: 2;
 }
 
-.panelLeft {
-    display: flex;
-    position: absolute;
-    bottom: 7px;
-}
-
-.panelRight {
-    display: flex;
-    position: absolute;
-    bottom: 7px;
-    right: 0;
-}
-
-.panelBtn {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-right: 12px;
-    margin-left: 12px;
-    cursor: pointer;
-}
-
-.panelImg {
-    width: 35px;
-    height: 35px;
-    padding: 2px;
-    background-color: rgb(42, 169, 206);
-    border-radius: 50%;
-    border: 1px solid black;
-    box-shadow: 0.5px 0.5px 1px 0.5px black;
-    opacity: 70%;
-}
-
-.panelBtnText {
-    font-size: 12px;
-}
-
 
 .responsiveBackground {
     display: none;
 }
 
-.responsiveText {
-    display: none;
-}
+
 
 
 /* ---------- Smartphones --------- */
@@ -97,26 +65,21 @@ canvas {
         width: 100%;
     }
 
-    .fullscreen {
-        display: none;
+    .canvasContainer {
+        position: relative;
+        margin-top: 0 !important;
     }
 
     .responsiveBackground {
-        position: absolute !important;
-        height: 100%;
-        width: 100%;
-        background-color: rgb(215, 152, 49);
-        z-index: 3;
-        opacity: 99%;
-
-        display: flex;
-        justify-content: center;
+        display: flex !important;
         align-items: center;
-    }
-
-    .responsiveText {
-        display: block !important;
+        justify-content: center;
         padding: 8px;
+        position: absolute;
+        background-color: rgb(246, 183, 95);
+        height: 100vh;
+        width: 100vw;
+        z-index: 3;
         text-align: center;
     }
 
@@ -130,7 +93,21 @@ canvas {
         margin: 0;
     }
 
-    .imgFullscreen {
-        display: none;
+    .canvasContainer {
+        position: relative;
+        margin-top: 0 !important;
+    }
+
+    .responsiveBackground {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+        position: absolute;
+        background-color: rgb(246, 183, 95);
+        height: 100vh;
+        width: 100vw;
+        z-index: 3;
+        text-align: center;
     }
 }
