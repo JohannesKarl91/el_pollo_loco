@@ -1,6 +1,7 @@
 class Character extends MovableObject {
 
     width = this.width;
+    y = this.y + 50;
     IMAGES_WALKING = [
         'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-21.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-22.png',
@@ -21,7 +22,7 @@ class Character extends MovableObject {
         'img/2.Secuencias_Personaje-Pepe-corrección/3.Secuencia_salto/J-39.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/3.Secuencia_salto/J-40.png'
     ];
-    IMAGES_DEAD=[
+    IMAGES_DEAD = [
         'img/2.Secuencias_Personaje-Pepe-corrección/5.Muerte/D-51.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/5.Muerte/D-52.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/5.Muerte/D-53.png',
@@ -30,7 +31,7 @@ class Character extends MovableObject {
         'img/2.Secuencias_Personaje-Pepe-corrección/5.Muerte/D-56.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/5.Muerte/D-57.png'
     ];
-    IMAGES_HURT=[
+    IMAGES_HURT = [
         'img/2.Secuencias_Personaje-Pepe-corrección/4.Herido/H-41.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/4.Herido/H-42.png',
         'img/2.Secuencias_Personaje-Pepe-corrección/4.Herido/H-43.png'
@@ -82,7 +83,7 @@ class Character extends MovableObject {
 
             }
 
-            else if(this.isHurt()){
+            else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             }
 

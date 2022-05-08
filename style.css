@@ -1,9 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0;
     background-image: url(./img/desertbackground.png);
+    object-fit: cover;
+    background-repeat: no-repeat;
 
 
     font-family: 'Oleo Script', cursive;
@@ -12,11 +18,8 @@ body {
 canvas {
     background-color: black;
     margin: 0;
-}
-
-.canvasContainer {
-    position: relative;
-    margin-top: 10vh;
+    z-index: 1;
+    margin-top: 16px !important;
 }
 
 .imgButtons {
@@ -29,29 +32,31 @@ canvas {
     z-index: 1;
 }
 
-.imgFullscreen{
-    object-fit: contain;
-    position: absolute;
-    height: 50px;
-    width: 50px;
-    color: black;
+.fullscreen {
+    padding: 8px;
     cursor: pointer;
-
-    top: 0px;
-    right: 0px;
-    z-index: 1;
 }
 
-.controlPanel{
+.controlPanel {
     display: flex;
     justify-content: space-between;
+    z-index: 2;
 }
 
-.panel{
+.panelLeft {
     display: flex;
+    position: absolute;
+    bottom: 7px;
 }
 
-.panelBtn{
+.panelRight {
+    display: flex;
+    position: absolute;
+    bottom: 7px;
+    right: 0;
+}
+
+.panelBtn {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -61,12 +66,28 @@ canvas {
     cursor: pointer;
 }
 
-.panelImg{
-    width: 55px;
-    height: 55px;
+.panelImg {
+    width: 35px;
+    height: 35px;
     padding: 2px;
     background-color: rgb(42, 169, 206);
     border-radius: 50%;
+    border: 1px solid black;
+    box-shadow: 0.5px 0.5px 1px 0.5px black;
+    opacity: 70%;
+}
+
+.panelBtnText {
+    font-size: 12px;
+}
+
+
+.responsiveBackground {
+    display: none;
+}
+
+.responsiveText {
+    display: none;
 }
 
 
@@ -76,9 +97,27 @@ canvas {
         width: 100%;
     }
 
-    .canvasContainer {
-        position: relative;
-        margin-top: 0 !important;
+    .fullscreen {
+        display: none;
+    }
+
+    .responsiveBackground {
+        position: absolute !important;
+        height: 100%;
+        width: 100%;
+        background-color: rgb(215, 152, 49);
+        z-index: 3;
+        opacity: 99%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .responsiveText {
+        display: block !important;
+        padding: 8px;
+        text-align: center;
     }
 
 }
@@ -88,10 +127,10 @@ canvas {
 @media only screen and (max-height: 480px) {
     canvas {
         height: 100vh;
+        margin: 0;
     }
 
-    .canvasContainer {
-        position: relative;
-        margin-top: 0 !important;
+    .imgFullscreen {
+        display: none;
     }
 }

@@ -36,34 +36,11 @@
 </head>
 
 <body onload="init()">
-
-    <div class="canvasContainer">
-        <canvas id="canvas" height="480" width="720"></canvas>
-        <img onclick="changeToFullscreen()" class="imgFullscreen" src="img/10.Buttons/fullscreen.svg">
-        <div class="controlPanel">
-            <div class="panel">
-                <div class="panelBtn">
-                    <img class="panelImg" src="img/10.Buttons/arrow_back.svg">
-                    <span>Back</span>
-                </div>
-                <div class="panelBtn">
-                    <img class="panelImg" src="img/10.Buttons/arrow_forward.svg">
-                    <span>Forward</span>
-                </div>
-            </div>
-            <div class="panel">
-                <div class="panelBtn">
-                    <img class="panelImg" src="img/10.Buttons/arrow_throw.svg">
-                    <span>Throw</span>
-                </div>
-                <div class="panelBtn">
-                    <img class="panelImg" src="img/10.Buttons/arrow_upward.svg">
-                    <span>Jump</span>
-                </div>
-            </div>
-        </div>
+    <div class="responsiveBackground">
+        <div class="responsiveText">Pepe always needs some space. Therefore the game is just as a desktop version playable!</div>
     </div>
-
+    <canvas id="canvas" height="480" width="720"></canvas>
+    <span class="fullscreen" onclick="changeToFullscreen()">Fullscreen</span>
 </body>
 
 </html>
