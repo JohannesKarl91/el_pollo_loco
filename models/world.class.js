@@ -182,9 +182,9 @@ class World {
                 // console.log('currentTime', currentTime);
                 //     this.character.chickenCounter += 1;
                 enemy.chickenDead = true;
-                setTimeout(() => {
-                    this.level.enemies.splice(index, 1);
-                }, 500)
+                // setTimeout(() => {
+                //     this.level.enemies.splice(index, 1);
+                // }, 500)
             }
         });
     }

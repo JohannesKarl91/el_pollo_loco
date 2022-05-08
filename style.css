@@ -57,6 +57,46 @@ canvas {
 }
 
 
+/*Start screen section*/
+.startScreen{
+    margin-top: 16px;
+    position: relative;
+}
+
+.startScreenImg{
+    object-fit: cover;
+    height: 480px;
+    width: 720px;
+}
+
+.startGameBtn{
+    position: absolute;
+    bottom: 3%;
+    left: 38%;
+    width: 175px;
+    height: 50px;
+    background-color: rgb(16, 160, 202);
+    border-radius: 25px;
+    border: 1px solid black;
+    color: whitesmoke;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.gameOverScreen{
+    height: 480px;
+    width: 720px;
+    position: absolute;
+    z-index: 23;
+    margin-top: 16px;
+}
+
+.d-none{
+    display: none;
+}
 
 
 /* ---------- Smartphones --------- */
@@ -82,7 +122,10 @@ canvas {
         z-index: 3;
         text-align: center;
     }
-
+    
+    .startScreenImg{
+        display: none !important;
+    }
 }
 
 
@@ -109,5 +152,9 @@ canvas {
         width: 100vw;
         z-index: 3;
         text-align: center;
+    }
+
+    .startScreenImg{
+        display: none !important;
     }
 }

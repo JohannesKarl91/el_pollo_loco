@@ -5,6 +5,7 @@ let keyboard = new Keyboard;
 
 function init() {
     canvas = document.getElementById('canvas');
+    canvas.innerHTML = ``;
     world = new World(canvas, keyboard);
 
     console.log('My character is', world.character)

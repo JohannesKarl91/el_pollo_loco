@@ -35,14 +35,22 @@
     <script src="js/script.js"></script>
 </head>
 
-<body onload="init()">
-    <div class="canvasContainer">
+<body>
+    <div class="startScreen" id="startScreen">
+        <img class="startScreenImg" src="./img/Opción2.png">
+        <div onclick="startGame()" class="startGameBtn"><span>Start Game</span></div>
+    </div>
+    
+    <div class="canvasContainer d-none" id="gameScreen">
         <canvas id="canvas" height="480" width="720"></canvas>
         <span class="fullscreen" onclick="changeToFullscreen()">Fullscreen</span>
         <div class="responsiveBackground">
-            <span>Pepe needs some space to play. Therefore the game is only available as desktop version!</span>
+            <span>Pepe needs some space to jump and run. Therefore the game is only available as desktop version!</span>
         </div>
-
+        <div class="gameOverScreen d-none" id="gameOverScreen">
+            <img class="startScreenImg" src="./img/2.oh no you lost!.png">
+            <div onclick="restartGame()" class="startGameBtn"><span>Start Game</span></div>
+        </div>
     </div>
 </body>
 
