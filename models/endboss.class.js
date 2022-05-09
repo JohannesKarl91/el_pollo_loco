@@ -55,6 +55,7 @@ class Endboss extends MovableObject {
             console.log('this.endbossDead', this.endbossDead)
             if (this.isDead() || this.endbossDead) {
                 this.endbossIsDead();
+                showEndGameScreen();
             }
 
             if (this.endbossHurt && !this.isDead()) {

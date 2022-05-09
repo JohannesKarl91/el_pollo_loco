@@ -45,13 +45,6 @@ canvas {
     cursor: pointer;
 }
 
-.controlPanel {
-    display: flex;
-    justify-content: space-between;
-    z-index: 2;
-}
-
-
 .responsiveBackground {
     display: none;
 }
@@ -65,7 +58,7 @@ canvas {
 
 .startScreenImg{
     object-fit: cover;
-    height: 480px;
+    height: 460px;
     width: 720px;
 }
 
@@ -94,8 +87,55 @@ canvas {
     margin-top: 16px;
 }
 
+.controlPanel{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+    height: 10vh;
+    width: 100%;
+}
+
+.panelDescription{
+    display: flex;
+}
+
+.panelColumn{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+.panelColumnText{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+.imgDescription{
+    background-color: rgb(11, 159, 201);
+    border-radius: 10px;
+    min-width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.letterDescription{
+    font-size: 32px;
+}
+
 .d-none{
     display: none;
+}
+
+.cursor-pointer{
+    cursor: pointer;
 }
 
 

@@ -30,8 +30,17 @@ function showGameOverScreen(){
 }
 
 
+function showEndGameScreen(){
+    let endGameScreen = document.getElementById('endScreen');
+    endGameScreen.classList.remove('d-none');
+}
+
+
 /*Frage, wie das Spiel nochmal komplett neugestartet werden kann.*/
 function restartGame(){
+    window.location.href = window.location.href;
     let gameOverScreen = document.getElementById('gameOverScreen');
     gameOverScreen.classList.add('d-none');
+    let endGameScreen = document.getElementById('endScreen');
+    endGameScreen.classList.add('d-none');
 }

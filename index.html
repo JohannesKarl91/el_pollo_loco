@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,21 +36,57 @@
     <script src="js/script.js"></script>
 </head>
 
+
 <body>
     <div class="startScreen" id="startScreen">
         <img class="startScreenImg" src="./img/Opción2.png">
         <div onclick="startGame()" class="startGameBtn"><span>Start Game</span></div>
     </div>
-    
+
     <div class="canvasContainer d-none" id="gameScreen">
         <canvas id="canvas" height="480" width="720"></canvas>
-        <span class="fullscreen" onclick="changeToFullscreen()">Fullscreen</span>
+        <div class="controlPanel">
+            <div class="panelDescription">
+                <div class="panelColumn">
+                    <img class="imgDescription" src="img/10.Buttons/arrow_back.svg">
+                    <span class="textDescription">Backwards</span>
+                </div>
+                <div class="panelColumn">
+                    <img class="imgDescription" src="img/10.Buttons/arrow_forward.svg">
+                    <span class="textDescription">Forward</span>
+                </div>
+                <div class="panelColumn">
+                    <span class="imgDescription letterDescription">D</span>
+                    <span class="textDescription">Throw</span>
+                </div>
+                <div class="panelColumn">
+                    <img class="imgDescription" src="img/10.Buttons/space_bar.svg">
+                    <span class="textDescription">Jump</span>
+                </div>
+                <div class="panelColumnText">
+                    <span>> Kill a chicken: Jump on it!</span>
+                    <span>> Kill the endboss: Collect & throw bottles!</span>
+                </div>
+            </div>
+
+            <div class="panelColumn cursor-pointer">
+                <img class="imgDescription" onclick="changeToFullscreen()" src="img/10.Buttons/fullscreen.svg">
+                <span class="textDescription">Fullscreen</span>
+            </div>
+        </div>
+
         <div class="responsiveBackground">
             <span>Pepe needs some space to jump and run. Therefore the game is only available as desktop version!</span>
         </div>
+
         <div class="gameOverScreen d-none" id="gameOverScreen">
             <img class="startScreenImg" src="./img/2.oh no you lost!.png">
-            <div onclick="restartGame()" class="startGameBtn"><span>Start Game</span></div>
+            <div onclick="restartGame()" class="startGameBtn"><span>Restart Game</span></div>
+        </div>
+
+        <div class="gameOverScreen d-none" id="endScreen">
+            <img class="startScreenImg" src="./img/gameover.png">
+            <div onclick="restartGame()" class="startGameBtn"><span>Restart Game</span></div>
         </div>
     </div>
 </body>

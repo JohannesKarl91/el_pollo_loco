@@ -8,6 +8,7 @@ class MovableObject extends DrawableObject {
     addedBottles = 0;
     addedCoins = 0;
 
+    
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -17,6 +18,7 @@ class MovableObject extends DrawableObject {
         }, 1000 / 25);
 
     }
+
 
     isAboveGround() {
         if (this instanceof ThrowableObject) { // Trowablw objects should always fall.
@@ -40,7 +42,6 @@ class MovableObject extends DrawableObject {
     moveRight() {
         this.x += this.speed;
         this.otherDirection = false;
-        //this.walking_sound.play();
     }
 
 
@@ -48,9 +49,11 @@ class MovableObject extends DrawableObject {
         this.x -= this.speed;
     }
 
+
     jump() {
         this.speedY = 30;
     }
+
 
     isColliding(mo) {
         return this.x + this.height > mo.x &&
@@ -58,6 +61,7 @@ class MovableObject extends DrawableObject {
             this.x < mo.x &&
             this.y < mo.y + mo.width;
     }
+
 
     flipImage(ctx) {
         ctx.save();
@@ -93,7 +97,7 @@ class MovableObject extends DrawableObject {
             this.energy = 0;
         }
         else {
-            this.energy -= 1;
+            this.energy -= 2;
         }
     }
 
