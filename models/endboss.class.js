@@ -93,6 +93,7 @@ class Endboss extends MovableObject {
         }, 200)
     }
 
+    
     walkRight() {
         this.otherDirection = true;
         setInterval(() => {
@@ -137,14 +138,15 @@ class Endboss extends MovableObject {
         this.counterEndboss++;
     }
 
+
     endbossIsHurt(){
         this.playAnimation(this.IMAGES_HURTING);
         this.speed = 0;
     }
 
+
     endbossIsDead(){
         this.playAnimation(this.IMAGES_DYING);
-        this.endbossDead = true;
         this.speed = 0;
         this.endbossDead = true;
     }
