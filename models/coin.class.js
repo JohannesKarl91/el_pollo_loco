@@ -10,6 +10,9 @@ class Coin extends MovableObject {
     x = 100;
 
 
+    /**
+     * Loads images, animates and sets x, y coordinate for coin element. 
+     */
     constructor() {
         super().loadImage('img/8.Coin/Moneda1.png');
         this.loadImages(this.IMAGES_COLLECT_COIN);

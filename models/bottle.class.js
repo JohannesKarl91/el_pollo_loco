@@ -9,6 +9,9 @@ class Bottle extends MovableObject {
     y = 340;
 
 
+    /**
+     * Loads bottles imgs from current array IMAGES_COLLECT_BOTTLES.
+     */
     constructor() {
         super().loadImage('img/6.botella/2.Botella_enterrada1.png');
         this.x = 700 + Math.random() * (1557);
@@ -16,6 +19,10 @@ class Bottle extends MovableObject {
         this.animate();
     }
 
+
+    /**
+     * Animation of available bottles in canvas element.
+     */
     animate() {
         setInterval(() => {
             //Walk animation

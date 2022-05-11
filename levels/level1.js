@@ -1,4 +1,9 @@
 let level1;
+
+
+/**
+ * Level1  includes all necessary drawable elements to create and draw class world.
+ */
 function initLevel() {
     level1 = new Level(
         [
@@ -74,5 +79,4 @@ function initLevel() {
         new Coin()
         ]
     );
-
 }

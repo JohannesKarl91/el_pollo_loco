@@ -11,13 +11,16 @@ function changeToFullscreen() {
  * Starts the game via click on the button.
  */
 function startGame() {
-    showStartScreen();
+    showGameScreen();
     initLevel();
     init();
 }
 
 
-function showStartScreen() {
+/**
+ * Starting point from start screen and changes into game screen (canvas). 
+ */
+function showGameScreen() {
     let startScreen = document.getElementById('startScreen');
     let gameScreen = document.getElementById('gameScreen');
     let gameOverScreen = document.getElementById('gameOverScreen');
@@ -36,13 +39,18 @@ function showGameOverScreen() {
 }
 
 
+/**
+ * Shows endscreen, when endboss has been killed.
+ */
 function showEndGameScreen() {
     let endGameScreen = document.getElementById('endScreen');
     endGameScreen.classList.remove('d-none');
 }
 
 
-/*Frage, wie das Spiel nochmal komplett neugestartet werden kann.*/
+/**
+ * Restart of entire game as an onclick function.
+ */
 function restartGame() {
     window.location.href = window.location.href;
     let gameOverScreen = document.getElementById('gameOverScreen');

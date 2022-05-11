@@ -17,6 +17,11 @@ class World {
     thrownBottle = false;
 
 
+    /**
+     * Defines the canvas as a new world and creates the entiry canvas including all relevant elements.
+     * @param {*} canvas 
+     * @param {*} keyboard 
+     */
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -155,6 +160,7 @@ class World {
         this.collisionThrowableObject();
     }
 
+    
     /**
      * Checks collision between bottle and endboss.
      */

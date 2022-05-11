@@ -13,6 +13,9 @@ class StatusBarBottle extends DrawableObject {
     height = 140;
 
 
+    /**
+     * Loads the relevant imgs as well as default percentage of bottles to 0.
+     */
     constructor() {
         super();
         this.loadImages(this.IMAGES_STATUS_BAR_BOTTLES);
@@ -21,7 +24,11 @@ class StatusBarBottle extends DrawableObject {
         this.setPercentage(0);
     }
 
-
+    
+    /**
+     * Sets percentage, when character collects one bottle as collisionBottles().
+     * @param {*} percentage 
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES_STATUS_BAR_BOTTLES[this.resolveImageIndex()];
@@ -29,6 +36,10 @@ class StatusBarBottle extends DrawableObject {
     }
 
 
+    /**
+     * Compares current percentage to status bar img value.
+     * @returns 
+     */
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;

@@ -16,6 +16,12 @@ class ThrowableObject extends MovableObject {
     ];
 
 
+    /**
+     * Loads all relevant imgs, define starting values of throwable object.
+     * @param {*} x 
+     * @param {*} y 
+     * @param {*} otherDirection 
+     */
     constructor(x, y, otherDirection) {
         super().loadImage('img/7.Marcadores/Icono/Botella.png');
         this.loadImages(this.IMAGES_THROW);
@@ -30,7 +36,11 @@ class ThrowableObject extends MovableObject {
     }
 
 
+    /**
+     * Throw functionality for character.
+     */
     throw() {
+        //Throws in left direction, when character.otherDirection is true.
         if (this.otherDirection) {
             this.speedY = 30;
             this.applyGravity();
@@ -38,6 +48,7 @@ class ThrowableObject extends MovableObject {
                 this.x -= 10;
             }, 20);
         }
+        //Throws in right direction, when character.otherDirection is false.
         else {
             this.speedY = 30;
             this.applyGravity();
@@ -48,13 +59,17 @@ class ThrowableObject extends MovableObject {
     }
 
 
+    /**
+     * Animation of throwable objects in two avaibale status: throw & splash.
+     */
     animate() {
         setInterval(() => {
             if (this.y > 280) {
+                //Bottle splash animation.
                 this.playAnimation(this.IMAGES_SPLASH);
             }
             else {
-                //Bottle throw animation
+                //Bottle throw animation.
                 this.playAnimation(this.IMAGES_THROW);
             }
         }, 90)

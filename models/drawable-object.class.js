@@ -14,8 +14,9 @@ class DrawableObject {
         this.img.src = path;
     }
 
+    
     /**
-     * 
+     * Draws necessary context of canvas element.
      * @param {HTMLCanvasElement} ctx 
      */
     draw(ctx) {
@@ -29,7 +30,7 @@ class DrawableObject {
 
 
     /**
-    * 
+    * Loads imgs for relevant element as precondition for drawing in class world.
     * @param {Array} inputArray 
     */
     loadImages(inputArray) {
@@ -39,6 +40,7 @@ class DrawableObject {
             this.imageCache[path] = img;
         });
     }
+
 
     // drawFrame(ctx) {
     //     if (this instanceof Character || this instanceof Chicken || this instanceof Endboss) {

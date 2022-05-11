@@ -3,6 +3,10 @@ class Cloud extends MovableObject {
     height = 500;
     width = 250;
 
+
+    /**
+     * Loads image, animates and sets x coordinate for cloud element. 
+     */
     constructor() {
         super().loadImage('img/5.Fondo/Capas/4.nubes/1.png');
 
@@ -11,6 +15,9 @@ class Cloud extends MovableObject {
     }
 
 
+    /**
+     * Animation of cloud elements in class world.
+     */
     animateCloud() {
         this.moveLeft();
     }

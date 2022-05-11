@@ -38,6 +38,9 @@ class Endboss extends MovableObject {
     ];
 
 
+    /**
+     * Animation & connection between endboss behavior and relevant endboss animations.
+     */
     constructor() {
         super().loadImage(this.IMAGES_STANDING[0]);
         this.loadImages(this.IMAGES_STANDING);
@@ -48,7 +51,9 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
-
+    /**
+     * Animates all revelant endboss movement & status during game. (e.g. endboss is dead, hurt).
+     */
     animate() {
         setInterval(() => {
             //console.log('this.isDead()', this.isDead());
@@ -57,7 +62,6 @@ class Endboss extends MovableObject {
                 this.endbossIsDead();
                 showEndGameScreen();
             }
-
             if (this.endbossHurt && !this.isDead()) {
                 this.endbossIsHurt();
             }
@@ -80,12 +84,18 @@ class Endboss extends MovableObject {
     }
 
 
+    /**
+     * Endboss status, that it stands or doesn't move.
+     */
     stand() {
         this.playAnimation(this.IMAGES_STANDING);
         this.speed = 0;
     }
 
 
+    /**
+     * Endboss moves from right to left hand side.
+     */
     walkLeft() {
         this.otherDirection = false;
         setInterval(() => {
@@ -93,7 +103,10 @@ class Endboss extends MovableObject {
         }, 200)
     }
 
-    
+
+    /**
+     * Endboss moves from left to right hand side.
+     */
     walkRight() {
         this.otherDirection = true;
         setInterval(() => {
@@ -102,6 +115,9 @@ class Endboss extends MovableObject {
     }
 
 
+    /**
+     * Endboss status, that it stands at the left hand side in canvas element.
+     */
     standingLeftBorder() {
         this.stand();
         this.otherDirection = true;
@@ -110,12 +126,18 @@ class Endboss extends MovableObject {
     }
 
 
+    /**
+     * Endboss status, that it stands or doesn't move on briefly at the left hand side at canvas element.
+     */
     returnLeftBorder() {
         this.stand();
         this.counterEndboss++;
     }
 
 
+    /**
+     * Sets counterEndboss to 0
+     */
     returnRightBorder() {
         this.counterEndboss = 0;
         this.otherDirection = false;
@@ -123,6 +145,9 @@ class Endboss extends MovableObject {
     }
 
 
+    /**
+     * Animates and execute the walkLeft() from right to left hand side.
+     */
     walkFromRightToLeft() {
         this.speed = 0.35;
         this.walkLeft();
@@ -131,6 +156,9 @@ class Endboss extends MovableObject {
     }
 
 
+    /**
+     * Animates and execute the walkRight() from left to right hand side.
+     */
     walkFromLeftToRight() {
         this.speed = -0.3;
         this.walkRight();
@@ -139,13 +167,19 @@ class Endboss extends MovableObject {
     }
 
 
-    endbossIsHurt(){
+    /**
+     * Animates hurt status of endboss by collision between endboss and thrown bottle.
+     */
+    endbossIsHurt() {
         this.playAnimation(this.IMAGES_HURTING);
         this.speed = 0;
     }
 
 
-    endbossIsDead(){
+    /**
+     * Animates dead status of endboss by energy level value of 0.
+     */
+    endbossIsDead() {
         this.playAnimation(this.IMAGES_DYING);
         this.speed = 0;
         this.endbossDead = true;

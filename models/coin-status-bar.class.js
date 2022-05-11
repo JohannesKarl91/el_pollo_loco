@@ -13,6 +13,9 @@ class StatusBarCoin extends DrawableObject {
     height = 140;
 
 
+    /**
+     * Loads the relevant imgs as well as default percentage of coins to 0.
+     */
     constructor() {
         super();
         this.loadImages(this.IMAGES_STATUS_BAR_COINS);
@@ -22,6 +25,10 @@ class StatusBarCoin extends DrawableObject {
     }
 
 
+    /**
+     * Sets percentage, when character collects one bottle as collisionCoins().
+     * @param {*} percentage 
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES_STATUS_BAR_COINS[this.resolveImageIndex()];
@@ -29,6 +36,10 @@ class StatusBarCoin extends DrawableObject {
     }
 
 
+    /**
+     * Compares current percentage to status bar img value.
+     * @returns 
+     */
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;

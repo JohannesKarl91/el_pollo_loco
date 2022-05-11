@@ -18,6 +18,9 @@ class Chicken extends MovableObject {
     chicken_sound = new Audio('audio/chicken.mp3');
 
 
+    /**
+     * Loads enemies imgs from current enemies arrays and animations.
+     */
     constructor() {
         super().loadImage('img/3.Secuencias_Enemy_básico/Versión_Gallinita (estas salen por orden de la gallina gigantona)/1.Ga_paso_derecho.png');
 
@@ -27,15 +30,18 @@ class Chicken extends MovableObject {
         this.animate();
     }
 
-    animate() {
 
+    /**
+     * Animation of enemy in status moveleft / walking function and when enemy is dead.
+     */
+    animate() {
+        //MoveLeft of enemy elements in level1.
         setInterval(() => {
             this.otherDirection = false;
             this.moveLeft();
         }, 1000 / 60)
-
+        //Animation of walking and dead status of enemy.
         setInterval(() => {
-            //Walk animation
             if (this.chickenDead) {
                 this.loadImage(this.IMAGES_DEAD);
                 this.speed = 0;

@@ -12,7 +12,9 @@ class StatusBarLife extends DrawableObject {
     width = 50;
     height = 140;
 
-
+    /**
+     * Loads the relevant imgs as well as default percentage of character life to 100.
+     */
     constructor() {
         super();
         this.loadImages(this.IMAGES_LIFE);
@@ -22,6 +24,10 @@ class StatusBarLife extends DrawableObject {
     }
 
 
+    /**
+     * Sets percentage, when character looses energy after colliding with enemies or endboss.
+     * @param {*} percentage 
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES_LIFE[this.resolveImageIndex()];
@@ -29,6 +35,10 @@ class StatusBarLife extends DrawableObject {
     }
 
 
+    /**
+     * Compares current percentage to status bar img value.
+     * @returns 
+     */
     resolveImageIndex() {
         if (this.percentage == 100) {
             return 5;

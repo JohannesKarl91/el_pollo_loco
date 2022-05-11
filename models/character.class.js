@@ -42,6 +42,9 @@ class Character extends MovableObject {
     jumping_sound = new Audio('audio/jump.mp3');
 
 
+    /**
+     * Loads character imgs from current character arrays, applies gravity as well as animations.
+     */
     constructor() {
         super().loadImage('img/2.Secuencias_Personaje-Pepe-corrección/2.Secuencia_caminata/W-21.png');
         this.loadImages(this.IMAGES_WALKING);
@@ -53,8 +56,11 @@ class Character extends MovableObject {
     }
 
 
+    /**
+     * Animation & connection between keyboard control, character behavior and relevant animations.
+     */
     animate() {
-
+        //Core functionalities / movements of character (move forward, backwards and jump.) 
         setInterval(() => {
             this.walking_sound.pause;
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
@@ -77,25 +83,20 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
 
+        //Core animations of character according to keyboard control and status (e.g. character is hurt, dead). 
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 showGameOverScreen();
-
             }
-
             else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             }
-
             else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             }
-
             else {
-
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    //Walk animation
                     this.playAnimation(this.IMAGES_WALKING);
                 }
             }
