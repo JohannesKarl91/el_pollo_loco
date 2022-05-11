@@ -14,6 +14,7 @@ class World {
     chicken_sound = new Audio('audio/chicken.mp3');
     bottle_sound = new Audio('audio/bottle.mp3');
     chicken_dead_sound = new Audio('audio/chicken_dead.mp3');
+    thrownBottle = false;
 
 
     constructor(canvas, keyboard) {
@@ -130,11 +131,15 @@ class World {
      * Checks the throw of a bottle from character.
      */
     checkThrowObjects() {
-        if (this.keyboard.THROW && this.character.addedBottles > 0) {
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+        if (this.keyboard.THROW && this.character.addedBottles > 0 && !this.thrownBottle) {
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, this.character.otherDirection);
             this.throwableObjects.push(bottle);
             this.character.addedBottles -= 10;
             this.statusBarBottle.setPercentage(this.character.addedBottles);
+            this.thrownBottle = true;
+            setTimeout(() => {
+                this.thrownBottle = false;
+            }, 600)
             //console.log('this.throwableObjects.length', this.throwableObjects.length)
         }
     }

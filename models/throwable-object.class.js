@@ -16,25 +16,37 @@ class ThrowableObject extends MovableObject {
     ];
 
 
-    constructor(x, y) {
+    constructor(x, y, otherDirection) {
         super().loadImage('img/7.Marcadores/Icono/Botella.png');
         this.loadImages(this.IMAGES_THROW);
         this.loadImages(this.IMAGES_SPLASH);
         this.x = x;
         this.y = y;
+        this.otherDirection = otherDirection;
         this.width = 80;
         this.height = 60;
         this.throw();
         this.animate();
     }
 
+
     throw() {
-        this.speedY = 30;
-        this.applyGravity();
-        setInterval(() => {
-            this.x += 8;
-        }, 20);
+        if (this.otherDirection) {
+            this.speedY = 30;
+            this.applyGravity();
+            setInterval(() => {
+                this.x -= 10;
+            }, 20);
+        }
+        else {
+            this.speedY = 30;
+            this.applyGravity();
+            setInterval(() => {
+                this.x += 8;
+            }, 20);
+        }
     }
+
 
     animate() {
         setInterval(() => {

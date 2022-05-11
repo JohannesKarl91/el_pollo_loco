@@ -51,8 +51,8 @@ class Endboss extends MovableObject {
 
     animate() {
         setInterval(() => {
-            console.log('this.isDead()', this.isDead());
-            console.log('this.endbossDead', this.endbossDead)
+            //console.log('this.isDead()', this.isDead());
+            //console.log('this.endbossDead', this.endbossDead)
             if (this.isDead() || this.endbossDead) {
                 this.endbossIsDead();
                 showEndGameScreen();
@@ -76,7 +76,7 @@ class Endboss extends MovableObject {
             if (this.counterEndboss > 185 && !this.endbossHurt && !this.endbossDead) {
                 this.walkFromLeftToRight();
             }
-        }, 200);
+        }, 100);
     }
 
 

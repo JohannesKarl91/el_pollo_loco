@@ -62,7 +62,6 @@ class MovableObject extends DrawableObject {
             this.y < mo.y + mo.width;
     }
 
-
     flipImage(ctx) {
         ctx.save();
         ctx.translate(this.height, 0);
@@ -79,7 +78,7 @@ class MovableObject extends DrawableObject {
 
     hit() {
         if (!this.isAboveGround()) {
-            this.energy -= 2.5;
+            this.energy -= 3;
         }
 
         if (this.energy < 0) {
@@ -97,7 +96,7 @@ class MovableObject extends DrawableObject {
             this.energy = 0;
         }
         else {
-            this.energy -= 2;
+            this.energy -= 3;
         }
     }
 

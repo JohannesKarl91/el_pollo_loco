@@ -23,7 +23,7 @@ class Chicken extends MovableObject {
 
         this.x = 700 + Math.random() * (2 * 719); // range of numbers between 200 and 700.
         this.loadImages(this.IMAGES_WALKING);
-        this.speed = 0.05 + Math.random() * 0.05;
+        this.speed = 0.6 + Math.random() * 0.5;
         this.animate();
     }
 
