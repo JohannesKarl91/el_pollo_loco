@@ -196,7 +196,7 @@ class World {
      */
     collisionEndboss() {
         this.level.endboss.forEach((endboss) => {
-            if (this.character.isColliding(endboss) && !this.character.isAboveGround()) {
+            if (this.character.isColliding(endboss)) {
                 this.character.hit();
                 this.statusBarLife.setPercentage(this.character.energy);
                 this.hurt_sound.play();

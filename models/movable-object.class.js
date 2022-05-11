@@ -62,6 +62,7 @@ class MovableObject extends DrawableObject {
             this.y < mo.y + mo.width;
     }
 
+
     flipImage(ctx) {
         ctx.save();
         ctx.translate(this.height, 0);
